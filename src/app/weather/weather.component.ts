@@ -28,7 +28,16 @@ export class WeatherComponent {
   lon: number = 0;
   darkMode: boolean = false;
 
+  userInput: string = '';
+  frozenMessage: string = '';
+
   constructor(private weatherService: WeatherService) {}
+
+  getTempClass(temp: number): string {
+    if (temp < 10) return 'bg-primary-subtle';
+    if (temp >= 10 && temp < 25) return 'bg-warning-subtle';
+    return 'bg-danger-subtle';
+  }
 
   getWeatherData(): void {
 
@@ -69,6 +78,7 @@ export class WeatherComponent {
     this.showDetails = !this.showDetails;
   }
 
+
   toggleDarkMode(): void {
     this.darkMode = !this.darkMode;
     const body = document.body;
@@ -79,6 +89,9 @@ export class WeatherComponent {
       body.classList.remove('bg-dark', 'text-white');
     }
   }
+
+
+
 
   getCountryFlag(countryCode: string): string {
     return `https://flagsapi.com/${countryCode}/shiny/64.png`;

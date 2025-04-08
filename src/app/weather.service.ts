@@ -27,4 +27,6 @@ export class WeatherService {
       `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${this.apiKey}&units=metric`
     );
   }
+  
+
 }

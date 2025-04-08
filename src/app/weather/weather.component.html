@@ -1,63 +1,59 @@
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="input-group mb-3">
-        <input 
-          type="text" 
-          class="form-control" 
-          placeholder="Enter city name" 
-          [(ngModel)]="cityName">
-        <button 
-          class="btn btn-primary" 
-          type="button" 
-          (click)="getWeatherData()">
-          Get Weather
-        </button>
-      </div>
-      <button class="btn btn-secondary position-fixed top-0 end-0 m-3" (click)="toggleDarkMode()">
-        Toggle Dark Mode
-      </button>
-      
-      
-      <div class="card" *ngIf="weatherData">
-        <div class="card-header bg-primary text-white">
-          <div class="d-flex justify-content-between align-items-center">
-            <h2 class="mb-0">Weather in {{displayedCity}}</h2>
-            <img *ngIf="country" [src]="getCountryFlag(country)" alt="Country flag" height="40">
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-6">
-              <div class="d-flex align-items-center">
-                <img *ngIf="weatherIcon" [src]="weatherIcon" alt="Weather icon">
-                <p class="h3 mb-0">
-                  <a href="#" (click)="toggleDetails(); $event.preventDefault()">
-                    {{temp}}°C
-                  </a>
-                </p>
-              </div>
-              <p><strong>Country:</strong> {{country}}</p>
-            </div>
-            <div class="col-6">
-              <p><strong>Pressure:</strong> {{pression}} hPa</p>
-              <p><strong>Humidity:</strong> {{humidite}}%</p>
-            </div>
-          </div>
-          <button 
-              class="btn btn-outline-secondary mt-3" 
-              (click)="toggleDetails()">
-              {{ showDetails ? 'Hide Details' : 'Show Details' }}
-          </button>
-          <app-detailed-weather 
-            *ngIf="showDetails" 
-            [weatherData]="weatherData">
-          </app-detailed-weather> 
-          <div class="mt-4" *ngIf="lat && lon">
-            <app-map [latitude]="lat" [longitude]="lon"></app-map>
-          </div>         
-        </div>
+  <!-- Input and weather button section -->
+  <div>
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Enter city name"
+      [(ngModel)]="cityName">
+    <button
+      class="btn btn-primary"
+      type="button"
+      (click)="getWeatherData()">
+      Get Weather
+    </button>
+  </div>
+  <button class="btn btn-secondary position-fixed top-0 end-0 m-3" (click)="toggleDarkMode()">
+    Toggle Dark Mode
+  </button>
+
+  <!-- Current Weather Card -->
+  <div class="card" *ngIf="weatherData">
+    <div class="card-header bg-primary text-white">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2 class="mb-0">Weather in {{displayedCity}}</h2>
+        <img *ngIf="country" [src]="getCountryFlag(country)" alt="Country flag" height="40">
       </div>
     </div>
-  </div>
+    <div class="card-body" [ngClass]="getTempClass(temp)">
+      <div class="row">
+        <div class="col-6">
+          <div class="d-flex align-items-center">
+            <img *ngIf="weatherIcon" [src]="weatherIcon" alt="Weather icon">
+            <p class="h3 mb-0">{{temp}}°C</p>
+          </div>
+          <p><strong>Country:</strong> {{country}}</p>
+        </div>
+        <div class="col-6">
+          <p><strong>Pressure:</strong> {{pression}} hPa</p>
+          <p><strong>Humidity:</strong> {{humidite}}%</p>
+        </div>
+      </div>
+      <button
+        class="btn btn-outline-secondary mt-3"
+        (click)="toggleDetails()">
+        {{ showDetails ? 'Hide Details' : 'Show Details' }}
+      </button>
+      <app-detailed-weather *ngIf="showDetails" [weatherData]="weatherData"></app-detailed-weather>
+    </div>
+</div>
+  <footer class="text-center mt-5 py-4 bg-light text-dark" [ngClass]="{'bg-dark text-white': darkMode}">
+    <div class="container">
+      <p class="mb-0">Weather data powered by
+        <a href="https://openweathermap.org/" target="_blank" class="text-primary">
+          OpenWeatherMap
+        </a>
+      </p>
+    </div>
+  </footer>
 </div>
