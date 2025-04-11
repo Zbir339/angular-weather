@@ -1,10 +1,10 @@
 <!-- Input and weather button section -->
-<div>
+<div class="container">
   <div class="input-group mb-3">
     <input
       type="text"
       class="form-control"
-      placeholder="Enter city name"
+      placeholder="Specifier la ville/nation"
       [(ngModel)]="cityName"
       aria-label="City Name"
     >
@@ -18,15 +18,7 @@
     </button>
   </div>
 
-  <button
-    class="btn btn-secondary position-fixed top-0 end-0 m-3"
-    (click)="toggleDarkMode()"
-    aria-label="Toggle Dark Mode"
-  >
-    Toggle Dark Mode
-  </button>
 
-  <!-- Current Weather Card -->
   <div class="card" *ngIf="weatherData">
     <div class="card-header bg-primary text-white">
       <div class="d-flex justify-content-between align-items-center">
@@ -57,15 +49,5 @@
       </button>
       <app-detailed-weather *ngIf="showDetails" [weatherData]="weatherData"></app-detailed-weather>
     </div>
-    <app-map *ngIf="weatherData" [latitude]="lat" [longitude]="lon"></app-map>
   </div>
 </div>
-<footer class="text-center mt-5 py-4 bg-light text-dark" [ngClass]="{'bg-dark text-white': darkMode}">
-  <div class="container">
-    <p class="mb-0">Weather data powered by
-      <a href="https://openweathermap.org/" target="_blank" class="text-primary">
-        OpenWeatherMap
-      </a>
-    </p>
-  </div>
-</footer>

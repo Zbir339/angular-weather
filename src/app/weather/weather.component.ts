@@ -1,15 +1,13 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 // import { HttpClientModule } from '@angular/common/http';
-import { WeatherService } from '../weather.service';
 import { DetailedWeatherComponent } from '../detailled-weather/detailled-weather.component';
-import { MapComponent } from '../map/map.component';
+import { WeatherService } from '../services/weather.service';
 
 @Component({
   selector: 'app-weather',
-  standalone: true,
-  imports: [CommonModule, FormsModule, DetailedWeatherComponent, MapComponent],
+  imports: [CommonModule, FormsModule, DetailedWeatherComponent],
   templateUrl: './weather.component.html',
   styleUrls: ['./weather.component.css']
 })
@@ -77,22 +75,6 @@ export class WeatherComponent {
   toggleDetails(): void {
     this.showDetails = !this.showDetails;
   }
-
-
-  toggleDarkMode(): void {
-    this.darkMode = !this.darkMode;
-    const body = document.body;
-
-    if (this.darkMode) {
-      body.classList.add('bg-dark', 'text-white');
-    } else {
-      body.classList.remove('bg-dark', 'text-white');
-    }
-  }
-
-
-
-
 
   getCountryFlag(countryCode: string): string {
     return `https://flagsapi.com/${countryCode}/shiny/64.png`;
