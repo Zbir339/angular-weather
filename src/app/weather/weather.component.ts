@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+// import { HttpClientModule } from '@angular/common/http';
 import { WeatherService } from '../weather.service';
 import { DetailedWeatherComponent } from '../detailled-weather/detailled-weather.component';
 import { MapComponent } from '../map/map.component';
@@ -9,7 +9,7 @@ import { MapComponent } from '../map/map.component';
 @Component({
   selector: 'app-weather',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule, DetailedWeatherComponent, MapComponent],
+  imports: [CommonModule, FormsModule, DetailedWeatherComponent, MapComponent],
   templateUrl: './weather.component.html',
   styleUrls: ['./weather.component.css']
 })
@@ -89,6 +89,7 @@ export class WeatherComponent {
       body.classList.remove('bg-dark', 'text-white');
     }
   }
+
 
 
 
